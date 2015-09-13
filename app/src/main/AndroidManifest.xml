@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.nathalie.articles" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,6 +17,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:parentActivityName="com.example.nathalie.articles.MainActivity"
+            android:name="com.example.nathalie.articles.ListadoActivity"
+            android:label="@string/title_activity_listado" >
         </activity>
     </application>
 

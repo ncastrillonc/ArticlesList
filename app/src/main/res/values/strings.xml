@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Articles</string>
+    <string name="title_activity_listado">Articles</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+
 </resources>
