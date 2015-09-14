@@ -6,13 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -28,7 +25,6 @@ import org.json.JSONArray;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Article> nuevoArt = new ArrayList<Article>();
-    private String opcion = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,10 +87,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void articlesJSON(String response){
-        ArrayList<String> listado= new ArrayList<String>();
+
         try {
             JSONArray json= new JSONArray(response);
-            String texto="";
+
             for (int i=0; i<json.length();i++){
 
                 this.nuevoArt.add(new Article(json.getJSONObject(i).getString("website"),
@@ -114,14 +110,11 @@ public class MainActivity extends AppCompatActivity {
 
         onRadioButtonClicked();
 
-
-
         Intent i = new Intent(MainActivity.this, ListadoActivity.class);
 
         //Creamos la informacion a pasar entre actividades
         Bundle b_on = new Bundle();
         b_on.putParcelableArrayList("articleslist", this.nuevoArt);
-        b_on.putString("opcion", this.opcion);
 
         //Agregamos la informacion al intent
         i.putExtras(b_on);
@@ -136,13 +129,26 @@ public class MainActivity extends AppCompatActivity {
 
         if(rb1.isChecked()){
             // this.opcion = "a";
+            Article.op = 2;
 
         } else if(rb2.isChecked()) {
             // this.opcion = "t";
-
+            Article.op = 1;
         } else {
             // this.opcion = "w";
+            Article.op = 3;
+        }
 
+        Article[] arrayArticles = new Article[this.nuevoArt.size()];
+
+        for(int k=0; k<this.nuevoArt.size(); k++){
+            arrayArticles[k] = this.nuevoArt.get(k);
+        }
+
+        Arrays.sort(arrayArticles);
+
+        for(int k=0; k<this.nuevoArt.size(); k++){
+            this.nuevoArt.set(k, arrayArticles[k]);
         }
     }
 }

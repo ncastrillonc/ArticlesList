@@ -6,7 +6,7 @@ package com.example.nathalie.articles;
 import android.os.Parcelable;
 import android.os.Parcel;
 
-public class Article implements Parcelable{
+public class Article implements Parcelable, Comparable<Article>{
 
     private String website;
     private String title;
@@ -15,6 +15,7 @@ public class Article implements Parcelable{
     private String content;
     private String authors;
     private String date;
+    static int op = 3;
 
     public Article(String website, String title, String image, int i, String content, String authors, String date){
         this.website = website;
@@ -24,6 +25,31 @@ public class Article implements Parcelable{
         this.content = content;
         this.authors = authors;
         this.date = date;
+    }
+
+    @Override
+    public int compareTo(Article ar) {
+
+        if(op == 1){
+            if (this.title.compareTo(ar.getTitle()) < 0) {
+                return -1;
+            } else if (this.title.compareTo(ar.getTitle()) > 0) {
+                return 1;
+            }
+        } else if(op == 2){
+            if (this.authors.compareTo(ar.getAuthors()) < 0) {
+                return -1;
+            } else if (this.authors.compareTo(ar.getAuthors()) > 0) {
+                return 1;
+            }
+        } else{
+            if (this.website.compareTo(ar.getWebsite()) < 0) {
+                return -1;
+            } else if (this.website.compareTo(ar.getWebsite()) > 0) {
+                return 1;
+            }
+        }
+        return 0;
     }
 
     public void setWebsite(String newWeb){
