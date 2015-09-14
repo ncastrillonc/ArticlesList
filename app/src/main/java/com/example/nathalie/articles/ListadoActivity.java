@@ -32,6 +32,7 @@ public class ListadoActivity extends Activity {
 
         this.setContentView(R.layout.activity_listado);
 
+        // Asociamos cada elementos de la actividad a una variable
         this.listView = (ListView) findViewById(R.id.listView);
         this.textView = (TextView) findViewById(R.id.TextContent);
         this.webView = (WebView) findViewById(R.id.webView);
@@ -65,7 +66,7 @@ public class ListadoActivity extends Activity {
                 // Loads the given URL
                 Article item = (Article) listView.getAdapter().getItem(position);
                 webView.loadUrl(item.getImage());
-
+                // Muestra la toda la información del artículo en un TextView
                 textView.setText("Website: " + item.getWebsite() + "\n\nTitle: " + item.getTitle() +
                                  "\n\nContent: " + item.getContent() + "\n\nAuthors: " +
                                  item.getAuthors() + "\n\nDate: " + item.getDate());
@@ -73,6 +74,10 @@ public class ListadoActivity extends Activity {
         });
     }
 
+    /* Se define un cliente para que la página se cargue en la misma pantalla y nos se abra la
+       página en un navegador Web que tengamos instalados, para ello definimos la siguiente clase
+       interna:
+     */
     private class myWebClient extends WebViewClient {
 
         @Override

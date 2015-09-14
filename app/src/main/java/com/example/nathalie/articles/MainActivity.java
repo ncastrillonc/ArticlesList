@@ -76,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         HttpContext contexto = new BasicHttpContext();
         HttpGet httpget = new HttpGet("http://www.ckl.io/challenge/");
         String resultado=null;
+
+        // Se obtiene el archivo JSON de la página indicada
         try {
             HttpResponse response = cliente.execute(httpget,contexto);
             HttpEntity entity = response.getEntity();
@@ -87,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void articlesJSON(String response){
+
+        // Creamos una lista de articulos con los datos almacenados en el archivo JSON
 
         try {
             JSONArray json= new JSONArray(response);
@@ -112,11 +116,11 @@ public class MainActivity extends AppCompatActivity {
 
         Intent i = new Intent(MainActivity.this, ListadoActivity.class);
 
-        //Creamos la informacion a pasar entre actividades
+        // Creamos la informacion a pasar entre actividades
         Bundle b_on = new Bundle();
         b_on.putParcelableArrayList("articleslist", this.nuevoArt);
 
-        //Agregamos la informacion al intent
+        // Agregamos la informacion al intent
         i.putExtras(b_on);
         startActivity(i);
     }
@@ -128,20 +132,13 @@ public class MainActivity extends AppCompatActivity {
         RadioButton rb1 = (RadioButton) findViewById(R.id.authors);
         RadioButton rb2 = (RadioButton) findViewById(R.id.titlee);
 
-
         if(rb.isChecked()){
-            // this.opcion = "d";
             Article.op = 0;
-
         } else if(rb1.isChecked()){
-            // this.opcion = "a";
             Article.op = 2;
-
         } else if(rb2.isChecked()) {
-            // this.opcion = "t";
             Article.op = 1;
         } else {
-            // this.opcion = "w";
             Article.op = 3;
         }
 
@@ -151,6 +148,10 @@ public class MainActivity extends AppCompatActivity {
             arrayArticles[k] = this.nuevoArt.get(k);
         }
 
+        /* Método Arrays.sort(), que recibe un array y simplemente lo ordena teniendo en
+           cuenta las condiciones que le hayamos dicho dentro del método compareTo de la
+           clase Article
+         */
         Arrays.sort(arrayArticles);
 
         for(int k=0; k<this.nuevoArt.size(); k++){

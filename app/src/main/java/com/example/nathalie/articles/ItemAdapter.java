@@ -18,6 +18,9 @@ public class ItemAdapter extends BaseAdapter {
     private Context context;
     private List<Article> items;
 
+    /* Recibe el contacto de la aplicación y la lista de elementos que se van a mostrar
+       en la lista
+     */
     public ItemAdapter(Context context, List<Article> items) {
         this.context = context;
         this.items = items;
@@ -25,21 +28,30 @@ public class ItemAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        // Devuelve el número de elementos de la lista
         return this.items.size();
     }
 
     @Override
     public Object getItem(int position) {
+        // Devuelve el elemento en una determinada posición de la lista
         return this.items.get(position);
     }
 
     @Override
     public long getItemId(int position) {
+        // Devuelve el identificador de fila de una determinada posición de la lista
         return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+        /* Este método ha de construir un nuevo objeto View con el layout correspondiente a la
+           posición position y devolverlo. Opcionalmente, podemos partir de una vista base
+           convertView para generar más rápido las vistas. El último parámetro corresponde al
+           padre al que la vista va a ser añadida.
+         */
 
         View rowView = convertView;
 
@@ -55,7 +67,7 @@ public class ItemAdapter extends BaseAdapter {
         TextView tvTitle = (TextView) rowView.findViewById(R.id.tvTitle);
 
         Article item = this.items.get(position);
-        tvTitle.setText(item.getTitle());
+        tvTitle.setText(item.getTitle() + "\n" + item.getAuthors());
         ivItem.setImageResource(item.getImg());
 
         return rowView;

@@ -6,6 +6,11 @@ package com.example.nathalie.articles;
 import android.os.Parcelable;
 import android.os.Parcel;
 
+/* Esta clase debe implementar Parcelable para poder enviar listas de articulos de una actividad a otra
+   y debe implementar a la clase Comparable<~>, la cual tiene el método compareTo, el cual compara dos
+   objetos y nos devuelve un orden de menor a mayor.
+ */
+
 public class Article implements Parcelable, Comparable<Article>{
 
     private String website;
