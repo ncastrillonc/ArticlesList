@@ -124,10 +124,16 @@ public class MainActivity extends AppCompatActivity {
     public void onRadioButtonClicked() {
         // Is the button now checked?
 
+        RadioButton rb = (RadioButton) findViewById(R.id.datee);
         RadioButton rb1 = (RadioButton) findViewById(R.id.authors);
         RadioButton rb2 = (RadioButton) findViewById(R.id.titlee);
 
-        if(rb1.isChecked()){
+
+        if(rb.isChecked()){
+            // this.opcion = "d";
+            Article.op = 0;
+
+        } else if(rb1.isChecked()){
             // this.opcion = "a";
             Article.op = 2;
 

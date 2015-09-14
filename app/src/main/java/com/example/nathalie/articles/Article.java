@@ -30,7 +30,13 @@ public class Article implements Parcelable, Comparable<Article>{
     @Override
     public int compareTo(Article ar) {
 
-        if(op == 1){
+        if(op == 0){
+            if (this.date.compareTo(ar.getDate()) < 0) {
+                return -1;
+            } else if (this.date.compareTo(ar.getDate()) > 0) {
+                return 1;
+            }
+        } else if(op == 1){
             if (this.title.compareTo(ar.getTitle()) < 0) {
                 return -1;
             } else if (this.title.compareTo(ar.getTitle()) > 0) {
