@@ -2,6 +2,9 @@ package com.example.nathalie.articles;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +14,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +25,7 @@ public class ListadoActivity extends Activity {
 
     private ArrayList<Article> listArt = new ArrayList<Article>();
     private ListView listView;
-    private TextView textView;
+    private TextView textView, textView2, textView3, textView4;
     private WebView webView;
     private ProgressDialog progressDialog;
 
@@ -35,6 +40,9 @@ public class ListadoActivity extends Activity {
         // Asociamos cada elementos de la actividad a una variable
         this.listView = (ListView) findViewById(R.id.listView);
         this.textView = (TextView) findViewById(R.id.TextContent);
+        this.textView2 = (TextView) findViewById(R.id.TextContent2);
+        this.textView3 = (TextView) findViewById(R.id.TextContent3);
+        this.textView4 = (TextView) findViewById(R.id.TextContent4);
         this.webView = (WebView) findViewById(R.id.webView);
 
         // Recuperamos la informacion pasada en el intent
@@ -47,6 +55,7 @@ public class ListadoActivity extends Activity {
 
         // Register a callback to be invoked when an item in this AdapterView
         // has been clicked
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view,
@@ -67,9 +76,10 @@ public class ListadoActivity extends Activity {
                 Article item = (Article) listView.getAdapter().getItem(position);
                 webView.loadUrl(item.getImage());
                 // Muestra la toda la información del artículo en un TextView
-                textView.setText("Website: " + item.getWebsite() + "\n\nTitle: " + item.getTitle() +
-                                 "\n\nContent: " + item.getContent() + "\n\nAuthors: " +
-                                 item.getAuthors() + "\n\nDate: " + item.getDate());
+                textView.setText("Website: " + item.getWebsite());
+                textView2.setText("Title: " + item.getTitle());
+                textView3.setText("Content: " + item.getContent());
+                textView4.setText("Date: " + item.getDate());
             }
         });
     }
@@ -97,6 +107,4 @@ public class ListadoActivity extends Activity {
             progressDialog.dismiss();
         }
     }
-
-
 }

@@ -3,6 +3,7 @@ package com.example.nathalie.articles;
 /**
  * Created by Nathalie on 13/09/2015.
  */
+import android.graphics.Bitmap;
 import android.os.Parcelable;
 import android.os.Parcel;
 
@@ -21,6 +22,7 @@ public class Article implements Parcelable, Comparable<Article>{
     private String authors;
     private String date;
     static int op = 3;
+    private Bitmap loadedImage = null;
 
     public Article(String website, String title, String image, int i, String content, String authors, String date){
         this.website = website;
@@ -91,6 +93,10 @@ public class Article implements Parcelable, Comparable<Article>{
         this.date = newDate;
     }
 
+    public void setLoadedImage(Bitmap newLI){
+        this.loadedImage = newLI;
+    }
+
     public String getWebsite(){
         return this.website;
     }
@@ -117,6 +123,10 @@ public class Article implements Parcelable, Comparable<Article>{
 
     public String getDate(){
         return this.date;
+    }
+
+    public Bitmap getLoadedImage(){
+        return this.loadedImage;
     }
 
     public Article(Parcel in) {

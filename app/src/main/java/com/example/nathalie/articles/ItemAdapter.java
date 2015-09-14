@@ -3,9 +3,17 @@ package com.example.nathalie.articles;
 /**
  * Created by Nathalie on 13/09/2015.
  */
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Rect;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +25,8 @@ public class ItemAdapter extends BaseAdapter {
 
     private Context context;
     private List<Article> items;
+    private Bitmap loadedImage;
+    private List<Bitmap> imgs = new ArrayList<Bitmap>();
 
     /* Recibe el contacto de la aplicación y la lista de elementos que se van a mostrar
        en la lista
@@ -63,12 +73,35 @@ public class ItemAdapter extends BaseAdapter {
         }
 
         // Set data into the view.
-        ImageView ivItem = (ImageView) rowView.findViewById(R.id.ivItem);
+        final ImageView ivItem = (ImageView) rowView.findViewById(R.id.ivItem);
         TextView tvTitle = (TextView) rowView.findViewById(R.id.tvTitle);
 
-        Article item = this.items.get(position);
-        tvTitle.setText(item.getTitle() + "\n" + item.getAuthors());
-        ivItem.setImageResource(item.getImg());
+        final Article item = this.items.get(position);
+        tvTitle.setText(item.getWebsite() + ": " + item.getAuthors());
+
+        //ivItem.setImageResource(item.getImg());
+        //downloadFile(item.getImage());
+
+        Thread thread = new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    final URL imageUrl = new URL(item.getImage());
+                    HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
+                    conn.connect();
+
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inSampleSize = 2; // el factor de escala a minimizar la imagen, siempre es potencia de 2
+
+                    Bitmap loadedImage = BitmapFactory.decodeStream(conn.getInputStream(), new Rect(0, 0, 0, 0), options);
+                    ivItem.setImageBitmap(loadedImage);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
 
         return rowView;
     }

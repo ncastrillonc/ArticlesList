@@ -18,6 +18,7 @@
         android:layout_toRightOf="@id/ivItem"
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textIsSelectable="false" />
+        android:textIsSelectable="false"
+        android:layout_marginLeft="10dp" />
 
 </RelativeLayout>
