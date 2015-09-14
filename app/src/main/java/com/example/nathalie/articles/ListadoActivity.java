@@ -9,6 +9,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,7 @@ public class ListadoActivity extends Activity {
 
     private ArrayList<Article> listArt = new ArrayList<Article>();
     private ListView listView;
+    private TextView textView;
     private WebView webView;
     private ProgressDialog progressDialog;
 
@@ -31,6 +33,7 @@ public class ListadoActivity extends Activity {
         this.setContentView(R.layout.activity_listado);
 
         this.listView = (ListView) findViewById(R.id.listView);
+        this.textView = (TextView) findViewById(R.id.TextContent);
         this.webView = (WebView) findViewById(R.id.webView);
 
         // Recuperamos la informacion pasada en el intent
@@ -62,6 +65,10 @@ public class ListadoActivity extends Activity {
                 // Loads the given URL
                 Article item = (Article) listView.getAdapter().getItem(position);
                 webView.loadUrl(item.getImage());
+
+                textView.setText("Website: " + item.getWebsite() + "\n\nTitle: " + item.getTitle() +
+                                 "\n\nContent: " + item.getContent() + "\n\nAuthors: " +
+                                 item.getAuthors() + "\n\nDate: " + item.getDate());
             }
         });
     }

@@ -6,8 +6,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -23,6 +28,7 @@ import org.json.JSONArray;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Article> nuevoArt = new ArrayList<Article>();
+    private String opcion = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,16 +112,37 @@ public class MainActivity extends AppCompatActivity {
 
     public void listadoOnClick(View view) {
 
+        onRadioButtonClicked();
+
+
+
         Intent i = new Intent(MainActivity.this, ListadoActivity.class);
 
         //Creamos la informacion a pasar entre actividades
         Bundle b_on = new Bundle();
         b_on.putParcelableArrayList("articleslist", this.nuevoArt);
+        b_on.putString("opcion", this.opcion);
 
         //Agregamos la informacion al intent
         i.putExtras(b_on);
         startActivity(i);
     }
 
+    public void onRadioButtonClicked() {
+        // Is the button now checked?
 
+        RadioButton rb1 = (RadioButton) findViewById(R.id.authors);
+        RadioButton rb2 = (RadioButton) findViewById(R.id.titlee);
+
+        if(rb1.isChecked()){
+            // this.opcion = "a";
+
+        } else if(rb2.isChecked()) {
+            // this.opcion = "t";
+
+        } else {
+            // this.opcion = "w";
+
+        }
+    }
 }
