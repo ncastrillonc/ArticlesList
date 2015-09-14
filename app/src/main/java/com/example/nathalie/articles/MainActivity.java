@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 
+import com.cengalabs.flatui.views.FlatRadioButton;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -128,9 +130,9 @@ public class MainActivity extends AppCompatActivity {
     public void onRadioButtonClicked() {
         // Is the button now checked?
 
-        RadioButton rb = (RadioButton) findViewById(R.id.datee);
-        RadioButton rb1 = (RadioButton) findViewById(R.id.authors);
-        RadioButton rb2 = (RadioButton) findViewById(R.id.titlee);
+        FlatRadioButton rb = (FlatRadioButton) findViewById(R.id.datee);
+        FlatRadioButton rb1 = (FlatRadioButton) findViewById(R.id.authors);
+        FlatRadioButton rb2 = (FlatRadioButton) findViewById(R.id.titlee);
 
         if(rb.isChecked()){
             Article.op = 0;

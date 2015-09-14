@@ -1,8 +1,8 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:flatui="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -26,32 +26,51 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp">
 
-        <RadioButton
+        <com.cengalabs.flatui.views.FlatRadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title"
-            android:id="@+id/titlee" />
+            android:id="@+id/titlee"
+            flatui:fl_dotMargin="5dip"
+            flatui:fl_size="25dip"
+            flatui:fl_theme="@array/sea"
+            android:textSize="20dp" />
 
-        <RadioButton
+        <com.cengalabs.flatui.views.FlatRadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Website"
-            android:id="@+id/website" />
+            android:id="@+id/website"
+            flatui:fl_dotMargin="5dip"
+            flatui:fl_size="25dip"
+            flatui:fl_theme="@array/sea"
+            android:textSize="20dp"
+            android:layout_marginTop="5dp" />
 
-        <RadioButton
+        <com.cengalabs.flatui.views.FlatRadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Authors"
-            android:id="@+id/authors" />
+            android:id="@+id/authors"
+            flatui:fl_dotMargin="5dip"
+            flatui:fl_size="25dip"
+            flatui:fl_theme="@array/sea"
+            android:textSize="20dp"
+            android:layout_marginTop="5dp" />
 
-        <RadioButton
+        <com.cengalabs.flatui.views.FlatRadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Date"
-            android:id="@+id/datee" />
+            android:id="@+id/datee"
+            flatui:fl_dotMargin="5dip"
+            flatui:fl_size="25dip"
+            flatui:fl_theme="@array/sea"
+            android:textSize="20dp"
+            android:layout_marginTop="5dp" />
     </RadioGroup>
 
-    <Button
+    <com.cengalabs.flatui.views.FlatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Watch Websites"
@@ -60,7 +79,11 @@
         android:layout_centerHorizontal="true"
         android:onClick="listadoOnClick"
         android:layout_marginTop="10dp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        flatui:fl_touchEffect="fl_ripple"
+        flatui:fl_blockButtonEffectHeight="3dp"
+        flatui:fl_theme="@array/sky"
+        android:textSize="20dp" />
 
 </LinearLayout>
 
